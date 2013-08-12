@@ -9,11 +9,11 @@ Gem::Specification.new do |gem|
   gem.homepage = "http://rashidkpc.github.com/Kibana/"
   gem.license = "MIT License"
 
-  gem.files = `git ls-files`.split("\n")
+  gem.files = `"C:\\Program Files (x86)\\Git\\bin\\git" ls-files`.split("\n")
   gem.name = "kibana"
   gem.require_paths = ["lib"]
   gem.version = Kibana::VERSION
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  gem.executables   = `"C:\\Program Files (x86)\\Git\\bin\\git" ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
   gem.add_runtime_dependency 'sinatra'
   gem.add_runtime_dependency 'json'
