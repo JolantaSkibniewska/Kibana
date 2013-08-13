@@ -25,6 +25,8 @@
 
   <script type="text/javascript" src="lib/js/shared.js"></script>
   <script type="text/javascript" src="lib/js/ajax.js"></script>
+  <!--<script type="text/javascript" src="lib/js/autorefresh.js"></script>-->
+  <script type="text/javascript" src="lib/js/proba.js"></script>
   <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
 
   <link rel="stylesheet" href="lib/css/jquery-ui-1.8.16.custom.css">
@@ -32,6 +34,7 @@
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="lib/css/style.css">
   <link rel="stylesheet" href="lib/css/font-awesome.css">
+
   
 
   <style type="text/css">
@@ -84,6 +87,19 @@
       </div>
 
       <div class="content span10" id=main>
+      	<!-- Zak³adki?-->
+      	<ul class="tabContainer">
+    		<!-- The jQuery generated tabs go here -->
+		</ul>
+
+		<div class="clear"></div>
+
+		<div id="tabContent">
+    		<div id="contentHolder">
+        		<!-- The AJAX fetched content goes here -->
+    		</div>
+		</div>
+		<!-- Koniec mojej wstawki -->
         <div>
           <span id=sbctl class="ui-icon ui-icon-triangle-1-w ui-state-default jlink"></span>
           <span id=feedlinks></span>

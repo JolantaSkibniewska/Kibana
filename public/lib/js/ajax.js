@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+  
   // Bind all click/change/whatever handlers
   bind_clicks()
   popover_setup()
