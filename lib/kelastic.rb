@@ -30,7 +30,7 @@ class Kelastic
   end
 
   class << self
-    def all_indices
+    def f
       url = URI.parse("http://#{Kelastic.server}/_aliases")
       http = Net::HTTP.new(url.host,url.port)
       if KibanaConfig.constants.include?("ElasticsearchTimeout")
@@ -169,6 +169,7 @@ class Kelastic
       o['kibana'] = {'per_page' => KibanaConfig::Per_page}
       o['kibana']['error'] = "Invalid query" if res.code.to_i.between?(500, 599)
       o['kibana']['curl_call'] = "curl -XGET #{url}?pretty -d '#{query}'"
+      
       o
     end
 
@@ -259,7 +260,6 @@ class KelasticMulti
     # Store the original values for reference
     target = query.query['size']
     offset = query.query['from']
-
     i = 1
     # Didn't get enough hits, and still have indices left?
     while @response['hits']['hits'].length < target and i < indices.length

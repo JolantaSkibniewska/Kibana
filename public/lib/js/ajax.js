@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  
+ 
   // Bind all click/change/whatever handlers
   bind_clicks()
   popover_setup()
@@ -107,10 +107,10 @@ function getPage() {
         //Parse out the result
         window.resultjson = JSON.parse(json);
 
-        //console.log(
-        //  'curl -XGET \'http://localhost:9200/'+resultjson.index+
-        //  '/_search?pretty=true\' -d\''+resultjson.kibana.es_query+'\'');
-        //console.log(resultjson.kibana.curl_call);
+       // console.log(
+       //   'curl -XGET \'http://localhost:9200/'+resultjson.index+
+       //   '/_search?pretty=true\' -d\''+resultjson.kibana.es_query+'\'');
+       // console.log(resultjson.kibana.curl_call);
 
         $('#graphheader,#graph').text("");
         $('#feedlinks').html(feedLinks(window.hashjson));
@@ -168,7 +168,13 @@ function getPage() {
         enable_popovers();
 
         // Create and populate #logs table
-        $('#logs').html(CreateLogTable(
+        
+        $('#tabs-1').html(CreateLogTable(
+          window.resultjson.hits.hits, fields,
+          'table logs table-condensed'
+        ));
+
+		 $('#logs').html(CreateLogTable(
           window.resultjson.hits.hits, fields,
           'table logs table-condensed'
         ));
