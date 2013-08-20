@@ -179,8 +179,8 @@ function getPage() {
         // Create and populate #logs table
         $('#tabs').html(CreateTabs(getFieldValues(window.resultjson,"repoName")));
         
-        $( "<li><a href='\#tabs4'></a></li>" ).appendTo( "#tabs .ui-tabs" );
-		$( "#tabs" ).tabs( "refresh" );
+        //$( "<li><a href='\#tabs4'></a></li>" ).appendTo( "#tabs .ui-tabs" );
+		//$( "#tabs" ).tabs( "refresh" );
         //$( "#tabs" ).tabs( "refresh" );
         /*$('#tabs-1').html(CreateLogTable(
           window.resultjson.hits.hits, fields,

@@ -30,7 +30,7 @@ class Kelastic
   end
 
   class << self
-    def f
+    def all_indices
       url = URI.parse("http://#{Kelastic.server}/_aliases")
       http = Net::HTTP.new(url.host,url.port)
       if KibanaConfig.constants.include?("ElasticsearchTimeout")
