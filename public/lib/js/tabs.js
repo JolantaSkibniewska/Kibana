@@ -1,4 +1,6 @@
 
 $(function() {
-$( "#tabs" ).tabs();
+	$( "#tabs" ).live('click', function (){
+          $(this).tabs()
+          })
 });

@@ -62,25 +62,29 @@ function pageload(hash) {
       window.hashjson.time = {user_interval:0};
     else if (typeof window.hashjson.time.user_interval == 'undefined')
         window.hashjson.time.user_interval = 0;
-
+	$( "#tabs" ).tabs( "refresh" );
     switch (window.hashjson.mode) {
     case 'terms':
     case 'score':
     case 'trend':
     case 'mean':
       getAnalysis();
+      $( "#tabs" ).tabs( "refresh" );
       break;
     case 'id':
       getID();
+      $( "#tabs" ).tabs( "refresh" );
       break;
     default:
       $('#feedlinks').html(feedLinks(window.hashjson));
       getPage();
+      $( "#tabs" ).tabs( "refresh" );
       break;
     }
 
   } else {
     resetAll();
+    $( "#tabs" ).tabs( "refresh" );
   }
 }
 
@@ -167,12 +171,21 @@ function getPage() {
 
         enable_popovers();
 
+
+		//displaying repoNames
+		//
+		$('#repoNames').html(getFieldValues(window.resultjson,'repoName'));
+
         // Create and populate #logs table
+        $('#tabs').html(CreateTabs(getFieldValues(window.resultjson,"repoName")));
         
-        $('#tabs-1').html(CreateLogTable(
+        $( "<li><a href='\#tabs4'></a></li>" ).appendTo( "#tabs .ui-tabs" );
+		$( "#tabs" ).tabs( "refresh" );
+        //$( "#tabs" ).tabs( "refresh" );
+        /*$('#tabs-1').html(CreateLogTable(
           window.resultjson.hits.hits, fields,
           'table logs table-condensed'
-        ));
+        ));*/
 
 		 $('#logs').html(CreateLogTable(
           window.resultjson.hits.hits, fields,
@@ -1616,6 +1629,7 @@ function bind_clicks() {
       window.hashjson.graphmode = 'count';
       window.hashjson.analyze_field = '';
       setHash(window.hashjson);
+      $( "#tabs" ).tabs( "refresh" );
     }
   );
 
@@ -1726,4 +1740,33 @@ function bind_clicks() {
     unhighlight_all_events();
   });
 
+}
+
+function CreateTabs(values){
+	values = values.split(',');
+	var html = "<ul>";
+	for (var i=1;i<=values.length;i++) {
+		html = html + "<li><a href=\"\#tabs" + i + "\">" + values[i-1] + "</a></li>" ;
+	}
+	html = html + "</ul>";
+	for (var i=1;i<=values.length;i++) {
+		html = html + "<div id=\"tabs" + i + "\"><p>" + values[i-1] + "</p></div>";
+	}
+	html = html + "<div id=\"tabs4\"><p>cos</p></div>";
+	return html;
+}
+
+function CreateTabs2(values) {
+	values = values.split(',');
+	for (var i=1;i<=values.length;i++) {
+		$( "<li><a href='/remote/tab.html'>New Tab</a></li>" )
+			.appendTo( "#tabs .ui-tabs-nav" );
+		$( "#tabs" ).tabs( "refresh" );
+	
+	 $("#tabs").tabs("add",CreateLogTable(
+          window.resultjson.hits.hits, fields,
+          'table logs table-condensed'
+        ),values[i-1]);
+	}
+	$( "#tabs" ).tabs( "refresh" );
 }

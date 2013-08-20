@@ -417,3 +417,19 @@ function htmlEntities(str) {
       />/g, '&gt;').replace(
       /"/g, '&quot;');
 }
+
+
+
+
+// Returns all distinct values of a given field in search results (json).
+function getFieldValues(json, fieldName) {
+	var values = [];
+	for (hit in json.hits.hits) {
+		values = values.concat(json.hits.hits[hit]._source['@fields'][fieldName]);
+	};
+	values = array_unique(values);
+	return values.toString();
+}
+	
+
+
